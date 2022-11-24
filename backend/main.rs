@@ -10,6 +10,7 @@ mod schema;
 mod services;
 mod models;
 mod mail;
+mod utils;
 
 #[actix_web::main]
 async fn main() -> std::io::Result<()> {
