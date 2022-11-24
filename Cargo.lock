@@ -1375,6 +1375,15 @@ dependencies = [
 ]
 
 [[package]]
+name = "itertools"
+version = "0.10.5"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "b0fd2260e829bddf4cb6ea802289de2f86d6a7a690192fbe91b3f46e0f2c8473"
+dependencies = [
+ "either",
+]
+
+[[package]]
 name = "itoa"
 version = "1.0.4"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -1601,6 +1610,15 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "a3e378b66a060d48947b590737b30a1be76706c8dd7b8ba0f2fe3989c68a853f"
 
 [[package]]
+name = "matrixmultiply"
+version = "0.3.2"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "add85d4dd35074e6fedc608f8c8f513a3548619a9024b751949ef0e8e45a4d84"
+dependencies = [
+ "rawpointer",
+]
+
+[[package]]
 name = "memchr"
 version = "2.5.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -1622,6 +1640,16 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "5de893c32cde5f383baa4c04c5d6dbdd735cfd4a794b0debdb2bb1b421da5ff4"
 dependencies = [
  "autocfg",
+]
+
+[[package]]
+name = "metaheuristics"
+version = "1.1.22"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "589964d07022efb7fc011f8e18626130fd75005056566f4d8647c5f8f6da2de7"
+dependencies = [
+ "rand",
+ "time 0.3.17",
 ]
 
 [[package]]
@@ -1724,6 +1752,19 @@ dependencies = [
  "security-framework",
  "security-framework-sys",
  "tempfile",
+]
+
+[[package]]
+name = "ndarray"
+version = "0.15.6"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "adb12d4e967ec485a5f71c6311fe28158e9d6f4bc4a447b474184d0f91a8fa32"
+dependencies = [
+ "matrixmultiply",
+ "num-complex",
+ "num-integer",
+ "num-traits",
+ "rawpointer",
 ]
 
 [[package]]
@@ -2080,6 +2121,7 @@ dependencies = [
  "comfy-table",
  "hashbrown",
  "indexmap",
+ "ndarray",
  "num",
  "once_cell",
  "polars-arrow",
@@ -2308,6 +2350,12 @@ dependencies = [
  "num-traits",
  "rand",
 ]
+
+[[package]]
+name = "rawpointer"
+version = "0.2.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "60a357793950651c4ed0f3f52338f53b2f809f32d83a07f72909fa13e4c6c1e3"
 
 [[package]]
 name = "rayon"
@@ -2937,6 +2985,17 @@ dependencies = [
 ]
 
 [[package]]
+name = "travelling_salesman"
+version = "1.1.22"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "a2a9a0bfa1e1e7744ae33a103267c964d082d5e132d3877feed413707af50088"
+dependencies = [
+ "metaheuristics",
+ "rand",
+ "time 0.3.17",
+]
+
+[[package]]
 name = "tsp-solver"
 version = "0.1.0"
 dependencies = [
@@ -2949,10 +3008,13 @@ dependencies = [
  "diesel",
  "dsync",
  "futures-util",
+ "itertools",
  "polars",
  "serde",
  "serde_json",
+ "time 0.3.17",
  "tokio",
+ "travelling_salesman",
  "tsync",
 ]
 
