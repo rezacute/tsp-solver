@@ -42,3 +42,9 @@ interface PaginationParams {
   page: number
   page_size: number
 }
+
+interface GeoPoint {
+  lat: number
+  lng: number
+  label: string
+}
