@@ -29,6 +29,7 @@ pub struct GeoPoint{
     pub label: String
 }
 
+
 pub struct OSRMNodes{
     pub points: Vec<GeoPoint>,
     pub distance_matrix: DistanceMatrix
@@ -42,7 +43,7 @@ pub struct Data {
 }
 pub fn solve_tsp()->(Vec<usize>,f64){
     let data = get_dataset().lock().unwrap();
-    let ln = data.v.len()-1;
+    let ln = data.v.len();
     let tour = travelling_salesman::simulated_annealing::solve(&data.v,time::Duration::seconds(5));
         let mut res_dist:f64= 0.0;
         let mut route = tour.route.clone();
@@ -84,7 +85,7 @@ pub fn get_dataset() -> &'static Mutex<Data> {
         let dmarray = dm.to_ndarray::<Float64Type>().unwrap();
         
 
-        let ln = ndarray.rows().into_iter().len() -1;
+        let ln = ndarray.rows().into_iter().len();
         
         for i in 0..ln{
             let x = ndarray.row(i);

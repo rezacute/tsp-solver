@@ -6,6 +6,6 @@ mod tsp_solver_tests{
     #[test]
     fn load_sample_file_test(){
         
-        println!("{:?}",&get_dataset().lock().unwrap().points)
+        println!("{:?}",&solve_tsp())
     }
 }
