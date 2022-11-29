@@ -48,3 +48,8 @@ interface GeoPoint {
   lng: number
   label: string
 }
+
+interface TSPResult {
+  route: Array<number>
+  distance: number
+}

@@ -6,9 +6,14 @@ async fn index() -> HttpResponse {
     let rs = &tsp_solver::get_dataset().lock().unwrap().points;
     HttpResponse::Ok().json(web::Json(rs))
 }
-
+#[get("/solve")]
+async fn solve() -> HttpResponse {
+    let rs = &tsp_solver::solve_tsp();
+    HttpResponse::Ok().json(web::Json(rs))
+}
 
 pub fn endpoints(scope: actix_web::Scope) -> actix_web::Scope {
     return scope
         .service(index)
+        .service(solve)
 }

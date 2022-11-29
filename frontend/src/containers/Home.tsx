@@ -7,7 +7,7 @@ import { GeoPoints } from './GeoPoints'
 export const Home = () => {
   return (
     <div>
-      <div>Geopoints</div>
+      <GeoPoints/>
       
     </div>
     
