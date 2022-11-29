@@ -16,6 +16,7 @@ import {
   TileLayer,
   useMap,
   Marker,
+  CircleMarker,
   Popup,
   Polyline,
 } from "react-leaflet";
@@ -55,8 +56,9 @@ export const GeoPoints = () => {
   const [solvedPoints, setSolvedPoints] = useState<Array<GeoPoint>>();
   const [processing, setProcessing] = useState<boolean>(false);
   const [tspResult, setTspResult] = useState<TSPResult>();
-  const limeOptions = { color: "red" };
-  
+  const limeOptions = { color: "lime" };
+  const redOptions = { color: 'red' }
+
   const solveTSP = async (points: Array<GeoPoint>) => {
     setProcessing(true);
     console.log("->", points.length);
@@ -79,18 +81,25 @@ export const GeoPoints = () => {
 
       setProcessing(false);
     });
+    
+  }, []);
+  useEffect(()=>{
     setTimeout(() => {// updates position every 5 sec
+      console.log("tick");
       if(open){
-        console.log(solvedPoints![idx].label);
-        setPos({lat:solvedPoints![idx].lat,lng:solvedPoints![idx].lng})
+        
+        
         if(solvedPoints!.length>idx){
           setIdx(idx+1);
         }else{
           setIdx(0);
+          setPos({lat:solvedPoints![0].lat,lng:solvedPoints![0].lng})
+          return;
         }
+        setPos({lat:solvedPoints![idx].lat,lng:solvedPoints![idx].lng})
       }
   }, 3000);
-  }, []);
+  })
   return (
     <div style={{ display: "flex" }}>
       <div
@@ -171,16 +180,17 @@ export const GeoPoints = () => {
                         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                       />
-                      {geoPoints?.map((point, index) => (
+                      {solvedPoints?.map((point, index) => (
                         <>
+                        
                           {index > 0 ? (
                             <>
                               <Polyline
                                 pathOptions={limeOptions}
                                 positions={[
                                   [
-                                    geoPoints[index - 1].lat,
-                                    geoPoints[index - 1].lng,
+                                    solvedPoints[index - 1].lat,
+                                    solvedPoints[index - 1].lng,
                                   ],
                                   [point.lat, point.lng],
                                 ]}
@@ -192,17 +202,18 @@ export const GeoPoints = () => {
                                 pathOptions={limeOptions}
                                 positions={[
                                   [
-                                    geoPoints[geoPoints.length - 1].lat,
-                                    geoPoints[geoPoints.length - 1].lng,
+                                    solvedPoints[solvedPoints.length - 1].lat,
+                                    solvedPoints[solvedPoints.length - 1].lng,
                                   ],
                                   [point.lat, point.lng],
                                 ]}
                               />
                             </>
-                          )}
-                          <Marker position={[point.lat, point.lng]}>
-                            <Popup>{point.label}</Popup>
-                          </Marker>
+                          )
+                          }
+                          <CircleMarker center={[point.lat, point.lng]} pathOptions={redOptions} radius={2}>
+      <Popup>{point.label}</Popup>
+    </CircleMarker>
                         </>
                       ))}
                       <ReactLeafletDriftMarker
@@ -210,8 +221,9 @@ export const GeoPoints = () => {
             position={pos}
             // time in ms that marker will take to reach its destination
             duration={1000}
+            
              >
-            <Popup>Hi this is a popup</Popup>
+            <Popup>{solvedPoints![idx].label}</Popup>
       
         </ReactLeafletDriftMarker>
                     </MapContainer>
