@@ -1,5 +1,4 @@
-#[cfg(test)]
-mod csv_loader_tests{
+mod tsp_solver_tests{
     
 
     use super::super::{*};
@@ -7,6 +6,6 @@ mod csv_loader_tests{
     #[test]
     fn load_sample_file_test(){
         
-        CsvLoader::load_sample_file();
+        println!("{:?}",&solve_tsp())
     }
 }

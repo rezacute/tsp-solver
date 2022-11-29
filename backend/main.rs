@@ -11,11 +11,11 @@ mod services;
 mod models;
 mod mail;
 mod utils;
-
+mod tsp;
 #[actix_web::main]
 async fn main() -> std::io::Result<()> {
     let app_data = create_rust_app::setup();
-
+    tsp::tsp_solver::get_dataset();
     HttpServer::new(move || {
         let mut app = App::new()
             .wrap(Compress::default())
@@ -28,6 +28,7 @@ async fn main() -> std::io::Result<()> {
         let mut api_scope = web::scope("/api");
         api_scope = api_scope.service(create_rust_app::auth::endpoints(web::scope("/auth")));
         api_scope = api_scope.service(services::todo::endpoints(web::scope("/todos")));
+        api_scope = api_scope.service(services::tsp::endpoints(web::scope("/tsp")));
 
         #[cfg(debug_assertions)]
         {

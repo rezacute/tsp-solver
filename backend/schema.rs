@@ -17,6 +17,14 @@ diesel::table! {
 }
 
 diesel::table! {
+    tsp_set (id) {
+        id -> Integer,
+        label -> Text,
+        created_at -> Timestamp,
+    }
+}
+
+diesel::table! {
     user_permissions (user_id, permission) {
         user_id -> Integer,
         permission -> Text,
@@ -59,6 +67,7 @@ diesel::joinable!(user_sessions -> users (user_id));
 diesel::allow_tables_to_appear_in_same_query!(
     role_permissions,
     todos,
+    tsp_set,
     user_permissions,
     user_roles,
     user_sessions,

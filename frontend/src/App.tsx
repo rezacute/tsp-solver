@@ -9,6 +9,7 @@ import React from 'react'
 import './App.css'
 import { Home } from './containers/Home'
 import { Todos } from './containers/Todo'
+import { GeoPoints } from './containers/GeoPoints'
 import { Route, useNavigate, Routes } from 'react-router-dom'
 
 const App = () => {
@@ -33,6 +34,7 @@ const App = () => {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/todos" element={<Todos />} />
+            <Route path="/points" element={<GeoPoints />} />
             {/* CRA: routes */}
             <Route path="/login" element={<LoginPage />} />
             <Route path="/recovery" element={<RecoveryPage />} />

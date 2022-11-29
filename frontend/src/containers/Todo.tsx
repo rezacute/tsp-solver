@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 
 const TodoAPI = {
   get: async (page: number, size: number) =>
-      await (await fetch(`/api/todos?page=${page}&page_size=${size}`)).json(),
+      await (await fetch(`/api/tsp`)).json(),
   create: async (todo: string) =>
       await (
           await fetch('/api/todos', {
